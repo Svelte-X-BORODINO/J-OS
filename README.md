@@ -1,6 +1,6 @@
 
 
-# J OS
+# J OS Beta 0.0.1
 
 [![](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ****
