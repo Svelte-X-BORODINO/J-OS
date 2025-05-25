@@ -1,8 +1,8 @@
 from time import *
 import random
-from colorama import init, Fore
+from colorama import init, Fore, Style
 import platform
-import psutil
+import psutil # type: ignore
 init(autoreset=True)
 
 def stage(text):
@@ -15,6 +15,28 @@ def printk(text):
     a = random.randint(1, 1000)
     b = random.randint(728, 10000)
     print(f'[ {a}.{b} ] {text}')
+
+from colorama import Fore, Style
+
+from colorama import Fore, Style
+
+def printok(*args):
+    # Собираем весь текст в одну строку
+    full_text = ' '.join(str(arg) for arg in args)
+    
+    # Разделяем на первое слово и остальной текст
+    first_space = full_text.find(' ')
+    if first_space == -1:  # Если только одно слово
+        first_word, rest = full_text, ''
+    else:
+        first_word = full_text[:first_space]
+        rest = full_text[first_space:]
+    
+    # Формируем цветной вывод
+    ok_part = f"[ {Fore.GREEN}OK{Style.RESET_ALL} ]"
+    first_word_part = f"{Fore.LIGHTBLACK_EX}{first_word}{Style.RESET_ALL}"
+    
+    print(f"{ok_part} {first_word_part}{rest}")
 
 
 
@@ -29,15 +51,15 @@ def run():
     printl(f'RAM: {ram.total // (1024 ** 3)} GB')
     sleep(2)
     processes = [
-    "systemd",
-    "systemd-journald",
-    "systemd-udevd",
+    "sysj-init",
+    "sysj-init-journald",
+    "sysj-init-udevd",
     "dbus-daemon",
     "NetworkManager",
     "dhcpcd",
     "wpa_supplicant",
-    "systemd-networkd",
-    "systemd-resolved",
+    "sysj-init-networkd",
+    "sysj-init-resolved",
     "agetty",
     "login",
     "bash",
@@ -103,29 +125,29 @@ def run():
     "smartd",
     "cron",
     "anacron",
-    "systemd-user-sessions",
-    "systemd-machined",
-    "systemd-nspawn",
-    "systemd-homed",
-    "systemd-sysctl",
-    "systemd-modules-load",
-    "systemd-random-seed",
-    "systemd-backlight",
-    "systemd-rfkill",
-    "systemd-localed",
-    "systemd-timedated",
-    "systemd-hostnamed",
-    "systemd-userdbd",
-    "systemd-pstore",
-    "systemd-boot-check-no-failures",
-    "systemd-coredump",
-    "systemd-notify",
-    "systemd-ask-password",
-    "systemd-repart",
-    "systemd-sysext",
-    "systemd-stub",
-    "systemd-sleep",
-    "systemd-shutdown",
+    "sysj-init-user-sessions",
+    "sysj-init-machined",
+    "sysj-init-nspawn",
+    "sysj-init-homed",
+    "sysj-init-sysctl",
+    "sysj-init-modules-load",
+    "sysj-init-random-seed",
+    "sys-backlight",
+    "sysj-init-rfkill",
+    "sysj-init-localed",
+    "sysj-init-timedated",
+    "sysj-init-hostnamed",
+    "sysj-init-userdbd",
+    "sysj-init-pstore",
+    "sysj-init-boot-check-no-failures",
+    "sysj-init-coredump",
+    "sysj-init-notify",
+    "sysj-init-ask-password",
+    "sysj-init-repart",
+    "sysj-init-sysext",
+    "sysj-init-stub",
+    "sysj-init-sleep",
+    "sysj-init-shutdown",
     "kworker",
     "ksoftirqd",
     "migration",
@@ -140,6 +162,6 @@ def run():
     ]
     for process in processes:
         choice = random.choice(["Initializing", "Starting"])
-        printk(f"{choice} {process}")
+        printok(f"{choice} {process}")
         sleep(0.05)
     
