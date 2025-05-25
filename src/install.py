@@ -306,7 +306,8 @@ def main_shell():
                     print("mkdir: Excepted name")
                 else:
                     os.system(f"cd {args[0]}")
-
+            elif command == "ls":
+                os.system('dir') if os.name == 'nt' else os.system('ls')
             elif command == "help":
                 print("""
 Available commands:
@@ -316,6 +317,7 @@ Available commands:
     su <username> - Switch user
     poweroff - Shutdown system
     help - Show this help
+    ls - Shows files in directory 
 """)
             else:
                 print("Invalid command or arguments.")
